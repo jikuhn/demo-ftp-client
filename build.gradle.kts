@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    implementation("commons-net:commons-net:3.8.0")
+
     testImplementation(kotlin("test"))
 }
 
