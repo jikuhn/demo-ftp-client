@@ -1,4 +1,6 @@
 import ftp.ClassicFtpClient
+import ftp.FtpClient
+import ftp.SFtpClient
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -9,24 +11,35 @@ fun main(args: Array<String>) {
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
     println("Program arguments: ${args.joinToString()}")
 
-    useClassicFtp()
+    if ("ftp".equals(args[0]))
+        useClassicFtp()
+    else if ("sftp".equals(args[0]))
+        useSFtp()
 }
 
 fun useClassicFtp() {
+    doFtp(ClassicFtpClient("localhost", "test", "test"))
+}
+
+fun useSFtp() {
+    doFtp(SFtpClient("localhost", "test", "test"))
+}
+
+fun doFtp(client: FtpClient) {
     val current = LocalDateTime.now()
 
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm:ss.SSS")
     val formatted = current.format(formatter)
 
     println("Current Date and Time is: $formatted")
 
-    val client = ClassicFtpClient("localhost", port = 21, "test", "test")
     println("> open")
     client.open()
-    println("> listFiles")
-    client.listFiles("/").forEach { file -> println(file) }
+    client.passive()
     println("> upload data")
     client.uploadFile("/data-${formatted}.txt", "Hello, ${formatted}".byteInputStream())
+    println("> listFiles")
+    client.listFiles("/").forEach { file -> println(file) }
     println("> close")
     client.close()
 }
