@@ -1,5 +1,6 @@
 import ftp.ClassicFtpClient
 import ftp.FtpClient
+import ftp.FtpsClient
 import ftp.SFtpClient
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -15,6 +16,8 @@ fun main(args: Array<String>) {
         useClassicFtp()
     else if ("sftp".equals(args[0]))
         useSFtp()
+    else if ("ftps".equals(args[0]))
+        useFtps()
 }
 
 fun useClassicFtp() {
@@ -23,6 +26,10 @@ fun useClassicFtp() {
 
 fun useSFtp() {
     doFtp(SFtpClient("localhost", "test", "test"))
+}
+
+fun useFtps() {
+    doFtp(FtpsClient("localhost", "test", "test"))
 }
 
 fun doFtp(client: FtpClient) {
