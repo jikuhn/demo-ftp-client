@@ -44,7 +44,7 @@ fun doFtp(client: FtpClient) {
     client.open()
     client.passive()
     println("> upload data")
-    client.uploadFile("/data-${formatted}.txt", "Hello, ${formatted}".byteInputStream())
+    client.uploadStringAsFile("/data-${formatted}.txt", "Hello, ${formatted}")
     println("> listFiles")
     client.listFiles("/").forEach { file -> println(file) }
     println("> close")

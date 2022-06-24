@@ -23,8 +23,11 @@ interface FtpClient {
      */
     fun listFiles(path: String): List<String>
 
+    fun uploadStringAsFile(path: String, content: String) {
+        uploadFile(path, content.byteInputStream(), content.length.toLong())
+    }
     /**
      * Upload one file.
      */
-    fun uploadFile(path: String, input: InputStream)
+    fun uploadFile(path: String, input: InputStream, length: Long)
 }

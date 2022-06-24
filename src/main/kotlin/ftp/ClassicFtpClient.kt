@@ -39,7 +39,7 @@ class ClassicFtpClient(val server: String, val user: String, val password: Strin
         ftp.enterLocalPassiveMode()
     }
 
-    override fun uploadFile(path: String, input: InputStream) {
+    override fun uploadFile(path: String, input: InputStream, length: Long) {
         ftp.storeFile(path, input)
     }
 

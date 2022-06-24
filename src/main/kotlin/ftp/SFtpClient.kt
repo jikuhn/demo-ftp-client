@@ -29,10 +29,12 @@ class SFtpClient(val server: String, val user: String, val password: String) : F
     }
 
     override fun listFiles(path: String): List<String> {
-        return emptyList()
+        return sftp.newSFTPClient().ls(path).map {
+            it.path
+        }
     }
 
-    override fun uploadFile(path: String, input: InputStream) {
+    override fun uploadFile(path: String, input: InputStream, length: Long) {
         val client = sftp.newSFTPClient()
         val file = object : InMemorySourceFile() {
             override fun getName(): String {
@@ -40,7 +42,7 @@ class SFtpClient(val server: String, val user: String, val password: String) : F
             }
 
             override fun getLength(): Long {
-                TODO("Not yet implemented")
+                return length
             }
 
             override fun getInputStream(): InputStream {

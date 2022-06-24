@@ -27,7 +27,7 @@ class FtpsClient(val server: String, val user: String, val password: String): Ft
         return files.map { file -> file.name }
     }
 
-    override fun uploadFile(path: String, input: InputStream) {
+    override fun uploadFile(path: String, input: InputStream, length: Long) {
         client.storeFile(path, input)
         print("upload file reply: ${client.replyString}")
     }
