@@ -15,6 +15,7 @@ repositories {
 dependencies {
     implementation("commons-net:commons-net:3.8.0")
     implementation("com.hierynomus:sshj:0.33.0")
+    implementation("org.apache.stratos:net.schmizz.sshj:0.8.1")
 
     testImplementation(kotlin("test"))
 }

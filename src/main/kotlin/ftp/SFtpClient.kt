@@ -3,7 +3,6 @@ package ftp
 import net.schmizz.sshj.SSHClient
 import net.schmizz.sshj.transport.verification.PromiscuousVerifier
 import net.schmizz.sshj.xfer.InMemorySourceFile
-import java.io.File
 import java.io.InputStream
 
 /**
@@ -12,10 +11,9 @@ import java.io.InputStream
  * SFTP uses port 22.
  */
 class SFtpClient(val server: String, val user: String, val password: String) : FtpClient {
-    var sftp: SSHClient
+    var sftp: SSHClient = SSHClient()
 
     init {
-        sftp = SSHClient()
         sftp.addHostKeyVerifier(PromiscuousVerifier())
     }
 
