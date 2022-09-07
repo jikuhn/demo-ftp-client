@@ -1,6 +1,7 @@
 package ftp
 
 import org.apache.commons.net.PrintCommandListener
+import org.apache.commons.net.ftp.FTP
 import org.apache.commons.net.ftp.FTPClient
 import org.apache.commons.net.ftp.FTPFile
 import org.apache.commons.net.ftp.FTPReply
@@ -28,6 +29,7 @@ class ClassicFtpClient(val server: String, val user: String, val password: Strin
         }
 
         ftp.login(user, password)
+        ftp.setFileType(FTP.BINARY_FILE_TYPE)
     }
 
     override fun listFiles(path: String): List<String> {
@@ -40,7 +42,14 @@ class ClassicFtpClient(val server: String, val user: String, val password: Strin
     }
 
     override fun uploadFile(path: String, input: InputStream, length: Long) {
-        ftp.storeFile(path, input)
+        val result = ftp.storeFile(path, input)
+        if (!result) {
+            throw RuntimeException(ftp.replyString)
+        }
+    }
+
+    override fun workingDirectory(): String {
+        return ftp.printWorkingDirectory()
     }
 
     override fun close() {

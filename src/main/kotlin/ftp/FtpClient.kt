@@ -30,4 +30,6 @@ interface FtpClient {
      * Upload one file.
      */
     fun uploadFile(path: String, input: InputStream, length: Long)
+
+    fun workingDirectory(): String
 }

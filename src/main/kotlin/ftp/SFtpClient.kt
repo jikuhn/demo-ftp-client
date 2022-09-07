@@ -50,6 +50,10 @@ class SFtpClient(val server: String, val user: String, val password: String) : F
         client.put(file, path)
     }
 
+    override fun workingDirectory(): String {
+        return "~"
+    }
+
     override fun passive() {
         // nothing
     }

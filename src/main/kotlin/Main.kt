@@ -43,10 +43,12 @@ fun doFtp(client: FtpClient) {
     println("> open")
     client.open()
     client.passive()
+    val pwd = client.workingDirectory()
+    println("> pwd: $pwd")
     println("> upload data")
-    client.uploadStringAsFile("/data-${formatted}.txt", "Hello, ${formatted}")
+    client.uploadStringAsFile("data-${formatted}.txt", "Hello, ${formatted}")
     println("> listFiles")
-    client.listFiles("/").forEach { file -> println(file) }
+    client.listFiles(pwd).forEach { file -> println(file) }
     println("> close")
     client.close()
 }

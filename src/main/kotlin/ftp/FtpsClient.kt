@@ -31,4 +31,8 @@ class FtpsClient(val server: String, val user: String, val password: String): Ft
         client.storeFile(path, input)
         print("upload file reply: ${client.replyString}")
     }
+
+    override fun workingDirectory(): String {
+        return client.printWorkingDirectory()
+    }
 }
