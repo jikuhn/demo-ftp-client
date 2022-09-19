@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
 filename=`date +%Y%d%m_%H%M%S`-$RANDOM.txt
-filesize=${RANDOM}00
+filesize=${RANDOM}000
 
 declare -A users
-users[test]=test
+#users[test]=tester
+users[test]=pwd-ulta-test
 users[hokus]=abcdef
 users[pokus]=efgh
 
 declare -A servers
-servers[test]=ftp1.hub.solwee.com:2101
+#servers[test]=ftp.solwee.com
+servers[test]=srv49324666.ultasrv.com
 servers[hokus]=ftp2.hub.solwee.com:2102
 servers[pokus]=ftp2.hub.solwee.com:2102
 

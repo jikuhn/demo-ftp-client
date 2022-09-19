@@ -21,7 +21,10 @@ fun main(args: Array<String>) {
 }
 
 fun useClassicFtp() {
-    doFtp(ClassicFtpClient("localhost", "test", "test"))
+//    doFtp(ClassicFtpClient("localhost", "test", "test"))
+//    doFtp(ClassicFtpClient("ftp.solwee.com", "test", "tester"))
+//    doFtp(ClassicFtpClient("srv49324666.ultasrv.com", "test3", "pwd-ulta-test"))
+    doFtp(FtpsClient("pasha.servers.dmdox.com", "admin_theitalians.cz", "T6E67vghM7"))
 }
 
 fun useSFtp() {

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 filename=`date +%Y%d%m_%H%M%S`-$RANDOM.txt
-filesize=${RANDOM}00
+filesize=${RANDOM}000
 
 declare -A users
 users[test]=test
