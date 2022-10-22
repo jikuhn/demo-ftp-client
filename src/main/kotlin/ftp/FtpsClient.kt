@@ -35,4 +35,8 @@ class FtpsClient(val server: String, val user: String, val password: String): Ft
     override fun workingDirectory(): String {
         return client.printWorkingDirectory()
     }
+
+    override fun protocol(): String {
+        return "ftps"
+    }
 }

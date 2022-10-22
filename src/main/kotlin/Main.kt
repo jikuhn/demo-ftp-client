@@ -23,8 +23,12 @@ fun main(args: Array<String>) {
 fun useClassicFtp() {
 //    doFtp(ClassicFtpClient("localhost", "test", "test"))
 //    doFtp(ClassicFtpClient("ftp.solwee.com", "test", "tester"))
-//    doFtp(ClassicFtpClient("srv49324666.ultasrv.com", "test3", "pwd-ulta-test"))
-    doFtp(FtpsClient("pasha.servers.dmdox.com", "admin_theitalians.cz", "T6E67vghM7"))
+//    doFtp(ClassicFtpClient("srv49324666.ultasrv.com", "test2", "pwd-ulta-test"))
+//    doFtp(ClassicFtpClient("ftp1.us-west.solwee.com", "test2", "pwd-ulta-test"))
+//    doFtp(SFtpClient("ftp1.us-west.solwee.com", "test2", "pwd-ulta-test"))
+    doFtp(FtpsClient("ftp1.us-west.solwee.com", "test2", "pwd-ulta-test"))
+//    doFtp(ClassicFtpClient("52.53.150.174", "test", "pwd-ulta-test"))
+//    doFtp(FtpsClient("pasha.servers.dmdox.com", "admin_theitalians.cz", "T6E67vghM7"))
 }
 
 fun useSFtp() {
@@ -49,9 +53,9 @@ fun doFtp(client: FtpClient) {
     val pwd = client.workingDirectory()
     println("> pwd: $pwd")
     println("> upload data")
-    client.uploadStringAsFile("data-${formatted}.txt", "Hello, ${formatted}")
+    client.uploadStringAsFile("data-${formatted}-${client.protocol()}.txt", "Hello, ${formatted}")
     println("> listFiles")
-    client.listFiles(pwd).forEach { file -> println(file) }
+    client.listFiles(".").forEach { file -> println("+ $file") }
     println("> close")
     client.close()
 }

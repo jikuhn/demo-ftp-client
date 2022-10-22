@@ -28,8 +28,13 @@ class ClassicFtpClient(val server: String, val user: String, val password: Strin
             throw IOException("Exception in connecting to FTP Server")
         }
 
-        ftp.login(user, password)
+        if (!ftp.login(user, password))
+            throw IOException("Login unsuccessful!")
         ftp.setFileType(FTP.BINARY_FILE_TYPE)
+    }
+
+    override fun protocol(): String {
+        return "ftp"
     }
 
     override fun listFiles(path: String): List<String> {

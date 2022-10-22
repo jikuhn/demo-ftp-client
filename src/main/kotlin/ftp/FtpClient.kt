@@ -32,4 +32,6 @@ interface FtpClient {
     fun uploadFile(path: String, input: InputStream, length: Long)
 
     fun workingDirectory(): String
+
+    fun protocol(): String
 }

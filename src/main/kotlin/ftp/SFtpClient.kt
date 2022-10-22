@@ -54,6 +54,10 @@ class SFtpClient(val server: String, val user: String, val password: String) : F
         return "~"
     }
 
+    override fun protocol(): String {
+        return "sftp"
+    }
+
     override fun passive() {
         // nothing
     }
